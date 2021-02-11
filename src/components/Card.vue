@@ -4,15 +4,15 @@
       <div class="card__index">
         <p>{{ index + 1 }}</p>
       </div>
-      <div class="card__index">
+      <div class="card__title">
         <h3>{{ task.title }}</h3>
         <p>{{ task.description }}</p>
       </div>
       <div class="card__btns">
-        <span class="card__delete-btn material-icons ">
+        <span class="card__delete-btn material-icons" @click="deleteTask">
           delete
         </span>
-        <span class="card__change-btn material-icons">
+        <span class="card__change-btn material-icons" @click="toTask">
           create
         </span>
       </div>
@@ -34,46 +34,19 @@ export default {
       if (value === "active") return { background: "#a7ffeb" }
       else if (value === "work") return { background: "#f0f4c3" }
       else if (value === "complited") return { background: "#f5f5f5" }
+    },
+    deleteTask() {
+      const id = this.task.id
+      this.$store.commit("deleteTask", id)
+    },
+    toTask() {
+      const id = this.task.id
+      this.$router.push({ name: "Task", params: { id } })
     }
   }
 }
 </script>
 
 <style lang="scss">
-.card__wrapper {
-  padding: 10px 30px;
-  display: flex;
-  justify-content: space-between;
-}
-
-.card__btns {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-.card__delete-btn {
-  margin: 10px 0;
-  cursor: pointer;
-  color: rgba(255, 0, 0, 0.5);
-
-  &:hover {
-    color: rgba(255, 0, 0, 0.9);
-  }
-  &:active {
-    color: rgba(255, 0, 0, 0.5);
-  }
-}
-.card__change-btn {
-  margin: 10px 0;
-  cursor: pointer;
-  color: rgba(0, 0, 255, 0.5);
-
-  &:hover {
-    color: rgba(0, 0, 255, 0.9);
-  }
-  &:active {
-    color: rgba(0, 0, 255, 0.5);
-  }
-}
+@import "../styles/card.scss";
 </style>

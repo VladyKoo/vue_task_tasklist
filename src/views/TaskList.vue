@@ -1,12 +1,17 @@
 <template>
   <div class="task">
     <div class="task__wrapper">
-      <div class="task__cards">
+      <div class="task__cards" v-if="tasks.length">
         <div v-for="(task, index) of tasks" :key="task.id" class="task__card">
           <Card :task="task" :index="index"></Card>
         </div>
       </div>
-      <button class="task__add-btn">Добавить задачу</button>
+      <div v-else class="task__cars_empty">
+        <h3>Задач нет</h3>
+      </div>
+      <div class="task__add-btn">
+        <router-link to="/create">Добавить задачу</router-link>
+      </div>
     </div>
   </div>
 </template>
@@ -19,7 +24,8 @@ export default {
   components: { Card },
   computed: {
     ...mapState(["tasks"])
-  }
+  },
+  methods: {}
 }
 </script>
 

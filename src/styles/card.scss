@@ -1,0 +1,49 @@
+@import "variables";
+
+.card__wrapper {
+  display: grid;
+  grid-template-columns: 40px 1fr 40px;
+  padding: 10px 30px;
+  border-radius: 10px;
+  box-shadow: 0 1px 5px rgb(0 0 0 / 15%);
+}
+
+.card__index {
+  display: flex;
+  align-items: center;
+}
+
+.card__title {
+  max-width: 700px;
+}
+
+.card__btns {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.card__delete-btn {
+  margin: 10px 0;
+  cursor: pointer;
+  color: rgba(255, 0, 0, 0.5);
+
+  &:hover {
+    color: rgba(255, 0, 0, 0.9);
+  }
+  &:active {
+    color: rgba(255, 0, 0, 0.5);
+  }
+}
+.card__change-btn {
+  margin: 10px 0;
+  cursor: pointer;
+  color: rgba(0, 0, 255, 0.5);
+
+  &:hover {
+    color: rgba(0, 0, 255, 0.9);
+  }
+  &:active {
+    color: rgba(0, 0, 255, 0.5);
+  }
+}
