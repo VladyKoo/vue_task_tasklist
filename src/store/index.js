@@ -10,32 +10,6 @@ export default new Vuex.Store({
       { name: "work", ruName: "В работе" },
       { name: "complited", ruName: "Выполнена" }
     ],
-    // tasks: [
-    //   {
-    //     id: "1",
-    //     title: "Task 1",
-    //     description:
-    //       "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium, officia!",
-    //     status: { name: "new", ruName: "Новая" },
-    //     date: 1613061696072
-    //   },
-    //   {
-    //     id: "2",
-    //     title: "Task 2",
-    //     description:
-    //       "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium, officia!",
-    //     status: { name: "work", ruName: "В работе" },
-    //     date: 1613061696072
-    //   },
-    //   {
-    //     id: "3",
-    //     title: "Task 3",
-    //     description:
-    //       "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium, officia!",
-    //     status: { name: "complited", ruName: "Выполнена" },
-    //     date: 1613061696072
-    //   }
-    // ],
     tasks: JSON.parse(localStorage.getItem("tasks") || "[]")
   },
   getters: {
@@ -52,7 +26,7 @@ export default new Vuex.Store({
         id: `f${(~~(Math.random() * 1e8)).toString(16)}`,
         title: payload.title,
         description: payload.description,
-        status: { name: "new", ruName: "Новая" },
+        status: state.statusName[0],
         date: Date.now()
       }
       state.tasks.push(task)
