@@ -2,7 +2,7 @@
 
 .card__wrapper {
   display: grid;
-  grid-template-columns: 40px 1fr 40px;
+  grid-template-columns: 40px 1fr 100px 100px 40px;
   padding: 10px 30px;
   border-radius: 10px;
   box-shadow: 0 1px 5px rgb(0 0 0 / 15%);
@@ -15,6 +15,24 @@
 
 .card__title {
   max-width: 700px;
+  padding-bottom: 20px;
+}
+
+.card__title_crossed {
+  text-decoration: line-through;
+}
+
+.card__status {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card__date {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .card__btns {

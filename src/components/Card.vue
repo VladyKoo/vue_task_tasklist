@@ -1,12 +1,19 @@
 <template>
   <div class="card">
-    <div class="card__wrapper" :style="cardColor(task.status)">
+    <div class="card__wrapper" :style="cardColor(task.status.name)">
       <div class="card__index">
-        <p>{{ index + 1 }}</p>
+        <span>{{ index + 1 }}</span>
       </div>
-      <div class="card__title">
+      <div class="card__title" :class="{ card__title_crossed: isComplited }">
         <h3>{{ task.title }}</h3>
-        <p>{{ task.description }}</p>
+        <span>{{ task.description }}</span>
+      </div>
+      <div class="card__status">
+        <span>{{ task.status.ruName }}</span>
+      </div>
+      <div class="card__date">
+        <span>{{ date }}</span>
+        <span>{{ time }}</span>
       </div>
       <div class="card__btns">
         <span class="card__delete-btn material-icons" @click="deleteTask">
@@ -28,10 +35,22 @@ export default {
     index: Number
   },
   data: () => ({}),
-  computed: {},
+  computed: {
+    isComplited() {
+      return this.task.status.name === "complited" ? true : false
+    },
+    date() {
+      const fullDate = new Date(this.task.date)
+      return `${fullDate.getDate()}.${fullDate.getMonth()}.${fullDate.getFullYear()}`
+    },
+    time() {
+      const fullDate = new Date(this.task.date)
+      return `${fullDate.getHours()}:${fullDate.getMinutes()}`
+    }
+  },
   methods: {
     cardColor(value) {
-      if (value === "active") return { background: "#a7ffeb" }
+      if (value === "new") return { background: "#a7ffeb" }
       else if (value === "work") return { background: "#f0f4c3" }
       else if (value === "complited") return { background: "#f5f5f5" }
     },

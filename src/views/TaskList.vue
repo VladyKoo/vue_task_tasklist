@@ -24,8 +24,7 @@ export default {
   components: { Card },
   computed: {
     ...mapState(["tasks"])
-  },
-  methods: {}
+  }
 }
 </script>
 

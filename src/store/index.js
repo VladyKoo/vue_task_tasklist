@@ -5,58 +5,72 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    status: [
-      { name: "active", lable: "Активна" },
-      { name: "work", lable: "В работе" },
-      { name: "complited", lable: "Завершена" }
+    statusName: [
+      { name: "new", ruName: "Новая" },
+      { name: "work", ruName: "В работе" },
+      { name: "complited", ruName: "Выполнена" }
     ],
-    tasks: [
-      {
-        id: 1,
-        title: "Task 1",
-        description:
-          "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium, officia!",
-        status: "active",
-        date: 1613061696072
-      },
-      {
-        id: 2,
-        title: "Task 2",
-        description:
-          "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium, officia!",
-        status: "work",
-        date: 1613061696072
-      },
-      {
-        id: 3,
-        title: "Task 3",
-        description:
-          "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium, officia!",
-        status: "complited",
-        date: 1613061696072
-      },
-      {
-        id: 4,
-        title: "Task 4",
-        description: `Значимость этих проблем настолько очевидна, что консультация с широким активом влечет за собой процесс внедрения и модернизации систем массового участия. Идейные соображения высшего порядка, а также начало повседневной работы по формированию позиции представляет собой интересный эксперимент проверки позиций, занимаемых участниками в отношении поставленных задач. `,
-        status: "complited",
-        date: 1613061696072
-      },
-      {
-        id: 5,
-        title: "Task 5",
-        description: `Значимость этих проблем настолько очевидна, что консультация с широким активом влечет за собой процесс внедрения и модернизации систем массового участия. `,
-        status: "complited",
-        date: 1613061696072
-      }
-    ]
+    // tasks: [
+    //   {
+    //     id: "1",
+    //     title: "Task 1",
+    //     description:
+    //       "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium, officia!",
+    //     status: { name: "new", ruName: "Новая" },
+    //     date: 1613061696072
+    //   },
+    //   {
+    //     id: "2",
+    //     title: "Task 2",
+    //     description:
+    //       "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium, officia!",
+    //     status: { name: "work", ruName: "В работе" },
+    //     date: 1613061696072
+    //   },
+    //   {
+    //     id: "3",
+    //     title: "Task 3",
+    //     description:
+    //       "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium, officia!",
+    //     status: { name: "complited", ruName: "Выполнена" },
+    //     date: 1613061696072
+    //   }
+    // ],
+    tasks: JSON.parse(localStorage.getItem("tasks") || "[]")
+  },
+  getters: {
+    getTasksById: (s) => (id) => s.tasks.find((task) => task.id === id)
   },
   mutations: {
     deleteTask(state, id) {
-      const tasks = state.tasks.filter((elem) => !(elem.id === id))
+      const tasks = state.tasks.filter((task) => !(task.id === id))
       state.tasks = tasks
+      localStorage.setItem("tasks", JSON.stringify(state.tasks))
+    },
+    addTask(state, payload) {
+      const task = {
+        id: `f${(~~(Math.random() * 1e8)).toString(16)}`,
+        title: payload.title,
+        description: payload.description,
+        status: { name: "new", ruName: "Новая" },
+        date: Date.now()
+      }
+      state.tasks.push(task)
+      localStorage.setItem("tasks", JSON.stringify(state.tasks))
+    },
+    changeTask(state, payload) {
+      const tasks = state.tasks.concat()
+      const taskIndex = tasks.findIndex((task) => task.id === payload.id)
+      const task = {
+        id: payload.id,
+        title: payload.title,
+        description: payload.description,
+        status: payload.status,
+        date: tasks[taskIndex].date
+      }
+      state.tasks[taskIndex] = task
+      localStorage.setItem("tasks", JSON.stringify(state.tasks))
     }
   },
-  actions: {},
-  modules: {}
+  actions: {}
 })
