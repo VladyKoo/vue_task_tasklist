@@ -23,3 +23,11 @@ npm run build
 ```
 npm run lint
 ```
+
+<!-- ![Resume previews](/Task.jpg) -->
+<div align ="center">
+  <img src = "Task.png" 
+      alt = "ТЗ" 
+      width="80%"     
+  />
+</div>
