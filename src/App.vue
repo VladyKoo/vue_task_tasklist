@@ -3,7 +3,6 @@
     <header class="header">
       <div class="header__nav-bar nav-bar">
         <router-link class="nav-bar__logo" to="/">Список задач</router-link>
-        <router-link class="nav-bar__link" to="/create">Создать задачу</router-link>
       </div>
     </header>
     <div class="content">

@@ -1,4 +1,5 @@
 @import "variables";
+@import "mixins";
 
 .card__wrapper {
   display: grid;
@@ -6,6 +7,10 @@
   padding: 10px 30px;
   border-radius: 10px;
   box-shadow: 0 1px 5px rgb(0 0 0 / 15%);
+
+  @include mediaQuery(xs) {
+    grid-template-columns: 40px 1fr 100px 40px;
+  }
 }
 
 .card__index {
@@ -16,6 +21,17 @@
 .card__title {
   max-width: 700px;
   padding-bottom: 20px;
+
+  @include mediaQuery(sm) {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  @include mediaQuery(xs) {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
 }
 
 .card__title_crossed {
@@ -33,6 +49,10 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
+  @include mediaQuery(xs) {
+    display: none;
+  }
 }
 
 .card__btns {
