@@ -42,7 +42,7 @@ export default new Vuex.Store({
         status: payload.status,
         date: tasks[taskIndex].date
       }
-      state.tasks[taskIndex] = task
+      state.tasks.splice(taskIndex, 1, task)
       localStorage.setItem("tasks", JSON.stringify(state.tasks))
     }
   },

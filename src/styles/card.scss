@@ -22,6 +22,10 @@
   max-width: 700px;
   padding-bottom: 20px;
 
+  @include mediaQuery(md) {
+    max-width: 400px;
+  }
+
   @include mediaQuery(sm) {
     white-space: nowrap;
     overflow: hidden;
